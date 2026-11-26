@@ -169,7 +169,7 @@ function handle_(d) {   // eslint-disable-line no-param-reassign
     const fails = Number(cache.get(failKey) || 0);
     if (fails >= MAX_FAILS) return { ok: false, error: 'Too many attempts. Try again in 15 minutes.' };
     const u = user_(email);
-    if (!u) { cache.put(failKey, String(fails + 1), LOCK_SECONDS); log_(email, '', 'Login refused', 'no account or not active'); return { ok: false, error: 'No account for this email yet. Choose "Create account".' }; }
+    if (!u) { cache.put(failKey, String(fails + 1), LOCK_SECONDS); log_(email, '', 'Login refused', 'no account or not active'); return { ok: false, error: 'No account for this email yet. Choose "Set up your account".' }; }
     const s = tab_('Users');
     if (!u.pass_hash) {                 // first login: the person sets their own password
       if (password.length < 8) return { ok: false, firstTime: true, error: 'Choose a password of at least 8 characters.' };
