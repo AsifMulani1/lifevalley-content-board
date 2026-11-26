@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Life Valley Content Review</title>
+<style>
+:root{--bg:#f3f6f8;--panel:#fff;--ink:#16243a;--muted:#62708a;--line:#e1e7ee;--navy:#243D62;--accent:#008080;--ok:#1f9d6a;--warn:#c77d0a;--bad:#c8443a;--live:#243D62;--ask:#f08c00;--shadow:0 1px 2px rgba(20,30,70,.06),0 4px 14px rgba(20,30,70,.06)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10151c;--panel:#18202b;--ink:#e6ecf3;--muted:#98a5b8;--line:#2a3442;--navy:#9fb8de;--accent:#3cb6b6;--ok:#3cc28a;--warn:#e3a03a;--bad:#e26a5f;--live:#9fb8de;--shadow:0 1px 2px rgba(0,0,0,.3)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+header{padding:16px 24px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:18px;color:var(--navy)}
+.sub{color:var(--muted);font-size:12px}
+.sp{flex:1}
+select,input,textarea{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+input[type=search]{min-width:200px}
+.wrap{max-width:1200px;margin:0 auto;padding:18px 24px 60px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.grp{margin-bottom:14px;overflow:hidden}
+.sec{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 16px 4px}
+.row{display:flex;gap:12px;align-items:center;padding:10px 16px;border-top:1px solid var(--line);cursor:pointer;border-left:4px solid var(--c, transparent)}
+.row:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.row .t{flex:1;font-weight:600}
+.row .d{color:var(--muted);font-size:12px;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;padding:2px 9px;border-radius:99px;white-space:nowrap;border:1px solid var(--c);color:var(--c)}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+.cm{font-size:12px;color:var(--muted);white-space:nowrap}
+.asks{font-size:12px;color:var(--ask);white-space:nowrap;font-weight:600}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(860px,100%);background:var(--panel);border-left:1px solid var(--line);box-shadow:-10px 0 30px rgba(0,0,0,.15);transform:translateX(100%);visibility:hidden;transition:transform .25s,visibility .25s;z-index:20;display:flex;flex-direction:column}
+.drawer.open{transform:none;visibility:visible}
+.dh{padding:14px 22px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.dh h3{margin:0 0 4px;font-size:17px}
+.db{flex:1;overflow:auto;padding:4px 28px 30px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px 14px;cursor:pointer;font:inherit;color:inherit;font-weight:600}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}.btn.bad{background:var(--bad);border-color:var(--bad);color:#fff}.btn.live{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.review,.webteam{background:var(--bg);border-radius:10px;padding:14px 16px;margin:16px 0}
+.review textarea{width:100%;min-height:70px;margin:8px 0}
+.webteam{border-left:4px solid var(--navy)}
+.webteam dl{display:grid;grid-template-columns:150px 1fr;gap:6px 12px;margin:10px 0}
+.webteam dt{color:var(--muted);font-size:12.5px}.webteam dd{margin:0;word-break:break-word}
+.webteam .acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.webteam input{flex:1;min-width:220px}
+.thread{margin-top:12px}
+.msg{border-top:1px solid var(--line);padding:9px 0;font-size:13px}
+.msg b{color:var(--navy)}
+.md{font-size:15px;line-height:1.65}
+.md h1{font-size:22px}.md h2{font-size:18px}.md h3{font-size:15px}
+.md table{border-collapse:collapse;margin:10px 0;font-size:13.5px}.md td,.md th{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.md .tw{overflow-x:auto}
+mark.ask{background:color-mix(in srgb,var(--ask) 22%,transparent);color:inherit;border-radius:4px;padding:1px 4px;font-size:.93em;font-weight:600}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.25);display:none;z-index:15}.scrim.open{display:block}
+.note{font-size:12.5px;color:var(--warn)}
+@media (max-width:700px){header,.wrap{padding-left:16px;padding-right:16px}.row .d{display:none}.webteam dl{grid-template-columns:1fr}.db{padding:4px 16px 30px}}
+.hero{border-radius:16px;padding:18px 20px;margin-bottom:14px;color:#fff;background:var(--c);display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.hero h2{all:unset;font-size:20px;font-weight:700;display:block}
+.hero .sub{color:rgba(255,255,255,.85)}
+.hero .btn{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:18px}
+.scard{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s;text-align:left;font:inherit;color:inherit;padding:0;display:flex;flex-direction:column;align-items:stretch}
+.scard:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,30,70,.12)}
+.scard .band{height:6px;flex:none;background:var(--c)}
+.scard .in{padding:14px 16px}
+.scard .nm{font-weight:700;font-size:15px;color:var(--ink)}
+.scard .tag{font-size:12px;color:var(--c);font-weight:600;margin:2px 0 10px}
+.scard .bar{display:flex;height:3px;border-radius:99px;overflow:hidden;background:var(--line);margin:10px 0}
+.scard .bar i{display:block;height:100%}
+.scard .nums{display:flex;gap:12px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.scard .nums b{color:var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:7px 14px;cursor:pointer;font:inherit;font-size:13px;display:inline-flex;gap:7px;align-items:center;color:inherit}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip.on{background:var(--c);border-color:var(--c);color:#fff}.chip.on i{background:#fff}
+.title-sec{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:18px 0 10px}
+.login{max-width:420px;margin:8vh auto;padding:26px 26px 22px}
+.login h2{all:unset;display:block;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.login input{width:100%;margin:6px 0 12px}
+.login .err{color:var(--bad);font-size:13px;min-height:18px}
+.revised{background:color-mix(in srgb,#1c7ed6 10%,var(--panel));border-left:4px solid #1c7ed6;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:13px}
+.serp{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:12px 0;font-family:Arial,sans-serif}
+.serp .u{font-size:12.5px;color:#4d5156}.serp .t{font-size:18px;color:#1a0dab;line-height:1.3;margin:3px 0}.serp .d{font-size:13.5px;color:#4d5156}
+.serp .len{font-size:11.5px;color:var(--muted);margin-top:6px}.serp .len b.over{color:var(--bad)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .serp .t{color:#8ab4f8}:root:not([data-theme="light"]) .serp .u,:root:not([data-theme="light"]) .serp .d{color:#bdc1c6}}
+mark.q{background:color-mix(in srgb,#f08c00 30%,transparent);color:inherit;border-radius:3px;cursor:pointer}
+.quote{border-left:3px solid #f08c00;padding:2px 8px;margin:4px 0;color:var(--muted);font-style:italic;font-size:12.5px}
+#selbtn{position:fixed;z-index:40;display:none}
+.help{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:13.5px}
+.help b{color:var(--navy)}
+@media print{header,.wrap,.scrim,.dh .btn,#rev,#web,#selbtn,.serp,.revised{display:none!important}
+  .drawer{position:static;transform:none;visibility:visible;width:auto;box-shadow:none;border:0}.db{overflow:visible;padding:0}
+  body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Life Valley Content Review</h1><div class="sub">For Life Valley International School and its website team, with Alignd · updated <span id="upd"></span></div></div>
+  <div class="sp"></div>
+  <input type="search" id="q" placeholder="Search all items" style="display:none">
+  <button class="btn" id="who" style="display:none"></button>
+</header>
+<div class="wrap">
+  <div id="loginbox"></div>
+  <div id="conn" class="note"></div>
+  <div id="help"></div>
+  <div id="hero"></div>
+  <div class="chips" id="chips"></div>
+  <div id="list"></div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh"><div style="flex:1"><h3 id="dt"></h3><div class="sub" id="dm"></div></div><button class="btn" onclick="window.print()">Print / PDF</button><button class="btn" id="dc">Close</button></div>
+  <div class="db">
+    <div id="revnote"></div>
+    <div class="review" id="rev"></div>
+    <div id="web"></div>
+    <div id="serp"></div>
+    <div class="md" id="dbody"></div>
+  </div>
+</aside>
+<button class="btn ok" id="selbtn">💬 Comment on this text</button>
+
+<script>
+const ENC = /*ENC*/null;
+const REVIEW_URL = /*REVIEW_URL*/'';
+const SITE = 'https://www.lifevalley.in';
+let DATA = null, KEY = '';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sec = slug => DATA.sections.find(s => s.slug === slug) || {slug, name: slug, tag: '', colour: '#5c6385'};
+const monthName = m => new Date(m + '-01').toLocaleString('en-IN', {month:'long', year:'numeric'});
+const STATES = {
+  awaiting: ['Awaiting Life Valley review', '#c77d0a'],
+  revised:  ['Revised, ready to re-check', '#1c7ed6'],
+  changes:  ['Changes requested', '#c8443a'],
+  approved: ['Approved, ready to publish', '#1f9d6a'],
+  live:     ['Live on the website', '#243D62'],
+};
+const DECISIONS = ['Approved', 'Changes requested', 'Published'];
+let REVIEWS = [], FILTER = '', openId = null, QUOTE = '', SAVED = {};   // SAVED: the last confirmed save per item, so the note survives a re-render
+const ls = (k, v) => { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch(e) { return null; } };
+let ME = null;   // {token, name, email}
+
+async function api(body){
+  const r = await (await fetch(REVIEW_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(body)})).json();
+  if (!r.ok && r.error === 'login required'){ logout(true); throw new Error('Your login has expired. Please log in again.'); }
+  return r;
+}
+
+// ---- login: the content is locked in the page and unlocked with a key the Sheet gives after login
+async function unlock(keyHex){
+  const hex = h => new Uint8Array(h.match(/../g).map(b => parseInt(b, 16)));
+  const key = await crypto.subtle.importKey('raw', hex(keyHex), {name:'AES-CBC'}, false, ['decrypt']);
+  const bytes = Uint8Array.from(atob(ENC.data), c => c.charCodeAt(0));
+  const plain = await crypto.subtle.decrypt({name:'AES-CBC', iv: hex(ENC.iv)}, key, bytes);
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+let SIGNUP = false;
+function loginForm(msg){
+  const f = SIGNUP;
+  $('loginbox').innerHTML = `<div class="card login"><h2>${f ? 'Set up your account' : 'Sign in'}</h2>
+    <p class="sub" style="margin-top:0">${f ? 'Use the email address Alignd added for you, and choose a password (at least 8 characters).' : 'Use the email and password you chose when you set up your account.'}</p>
+    ${f ? '<label>Your name<input id="lnm" autocomplete="name"></label>' : ''}
+    <label>Email<input id="lem" type="email" autocomplete="username" value="${esc(ls('lvEmail')||'')}"></label>
+    <label>Password<input id="lpw" type="password" autocomplete="${f ? 'new-password' : 'current-password'}"></label>
+    ${f ? '<label>Confirm password<input id="lpw2" type="password" autocomplete="new-password"></label>' : ''}
+    <div class="err" id="lerr">${esc(msg||'')}</div>
+    <button class="btn ok" id="lgo" style="width:100%">${f ? 'Set up account' : 'Sign in'}</button>
+    <p class="sub" style="text-align:center;margin:12px 0 0">${f ? 'Already set up? <a href="#" id="lsw">Sign in</a>' : 'First time here? <a href="#" id="lsw">Set up your account</a>'}</p>
+    <p class="sub" style="text-align:center;margin:8px 0 0">No access yet? Email hello@alignd.in</p></div>`;
+  ['hero','chips','list','help'].forEach(id => $(id).innerHTML = '');
+  $('q').style.display = $('who').style.display = 'none';
+  $('lgo').onclick = doLogin;
+  const enter = e => { if (e.key === 'Enter') doLogin(); };
+  $('lpw').onkeydown = enter; $('lem').onkeydown = enter; if (f) $('lpw2').onkeydown = enter;
+  $('lsw').onclick = () => { SIGNUP = !SIGNUP; loginForm(''); return false; };
+}
+async function doLogin(){
+  const email = $('lem').value.trim().toLowerCase(), password = $('lpw').value;
+  let body = {op:'login', email, password};
+  if (SIGNUP){
+    const name = $('lnm').value.trim();
+    if (!name){ $('lerr').textContent = 'Enter your name.'; return; }
+    if (password.length < 8){ $('lerr').textContent = 'Choose a password of at least 8 characters.'; return; }
+    if (password !== $('lpw2').value){ $('lerr').textContent = 'The two passwords don’t match.'; return; }
+    body = {op:'signup', name, email, password};
+  }
+  if (!email || !password){ $('lerr').textContent = 'Enter your email and password.'; return; }
+  $('lerr').textContent = SIGNUP ? 'Setting up your account…' : 'Signing in…';
+  try {
+    const r = await api(body);
+    if (!r.ok){ $('lerr').textContent = r.error; return; }
+    DATA = await unlock(r.key); KEY = r.key;
+    ME = {token:r.token, name:r.name, email:r.email};
+    ls('lvEmail', email); ls('lvSession', JSON.stringify({...ME, key:r.key, at:Date.now()}));
+    SIGNUP = false; start();
+  } catch(e){ $('lerr').textContent = (e.name === 'OperationError') ? 'The page could not unlock the content. Please email hello@alignd.in.' : e.message; }
+}
+function logout(expired){
+  if (ME && !expired) api({op:'logout', token:ME.token}).catch(() => {});
+  ME = null; DATA = null; KEY = ''; REVIEWS = []; ls('lvSession', null); close(); loginForm(expired ? 'Your login has expired. Please sign in again.' : '');
+}
+async function resume(){
+  try {
+    const s = JSON.parse(ls('lvSession') || 'null');
+    if (!s || Date.now() - s.at > 6 * 3600 * 1000) return false;
+    DATA = await unlock(s.key); KEY = s.key; ME = {token:s.token, name:s.name, email:s.email}; return true;
+  } catch(e){ return false; }
+}
+
+// ---- status: the latest decision wins; an item edited after "Changes requested" shows as revised
+const byTime = (a, b) => String(a.time).localeCompare(String(b.time));
+function lastDecision(id){
+  return REVIEWS.filter(r => r.post_id === id && DECISIONS.includes(r.action)).sort(byTime).pop();
+}
+function statusOf(id){
+  const d = lastDecision(id);
+  if (!d) return 'awaiting';
+  if (d.action === 'Published') return 'live';
+  if (d.action === 'Approved') return 'approved';
+  const p = DATA.posts.find(x => x.id === id);
+  return p && p.updated && p.updated > d.time ? 'revised' : 'changes';
+}
+const liveUrl = id => { const d = lastDecision(id); return d && d.action === 'Published' ? d.comment : ''; };
+const threadOf = id => REVIEWS.filter(r => r.post_id === id).sort(byTime);
+const badge = st => `<span class="badge" style="--c:${STATES[st][1]}">${STATES[st][0]}</span>`;
+const askCount = p => (p.body.match(/\[ASK LIFE VALLEY[^\]]*\]/g) || []).length;
+
+async function loadReviews(){
+  if (!REVIEW_URL || !ME) return;
+  try { const r = await api({op:'list', token:ME.token}); REVIEWS = r.rows || []; $('conn').textContent = ''; }
+  catch(e){ $('conn').textContent = e.message || 'Could not load reviews right now. Refresh the page to try again.'; }
+}
+
+let SECTION = '';
+try { SECTION = (location.hash.match(/section=([\w-]+)/) || [])[1] || ''; } catch(e) {}
+function go(slug){ SECTION = slug; FILTER = ''; try { history.replaceState(null, '', slug ? '#section=' + slug : '#'); } catch(e) {} render(); window.scrollTo(0, 0); }
+function statusChips(ps, c){
+  const count = st => ps.filter(p => statusOf(p.id) === st).length;
+  return [['', 'All', ps.length, c]].concat(Object.entries(STATES).map(([k,[l,col]]) => [k, l, count(k), col]))
+    .map(([k,l,n,col]) => `<button class="chip ${FILTER===k?'on':''}" style="--c:${col}" onclick="FILTER='${k}';render()"><i></i>${l} <b>${n}</b></button>`).join('');
+}
+function bar(ps){
+  const n = ps.length || 1;
+  return `<div class="bar">${['live','approved','revised','changes'].map(k => `<i style="width:${100*ps.filter(p => statusOf(p.id)===k).length/n}%;background:${STATES[k][1]}"></i>`).join('')}</div>`;
+}
+function rowHtml(p, showSection){
+  const n = threadOf(p.id).filter(r => r.comment && r.action !== 'Published').length, a = askCount(p);
+  return `<div class="row" style="--c:${sec(p.section).colour}" onclick="openPost('${p.id}')"><span class="t">${esc(p.title)}${showSection?`<div class="sub" style="font-weight:400">${esc(sec(p.section).name)}</div>`:''}</span>${a?`<span class="asks" title="Questions for the school in this draft">❓ ${a}</span>`:''}<span class="d">${esc(p.publish_date||'')}</span>${n?`<span class="cm">💬 ${n}</span>`:''}${badge(statusOf(p.id))}</div>`;
+}
+function helpStrip(){
+  if (ls('lvHelpSeen')) return '';
+  return `<div class="help"><span>👋 <b>How it works:</b> open an item → <b>Approve</b>, <b>Request changes</b> or comment. Select any sentence to comment on just that line. <b style="color:var(--ask)">Orange notes</b> are questions for the school: answer them in a comment. Approved items show the website team what to publish; they click <b>Mark as live</b> when it is up.</span><span class="sp"></span><button class="btn" onclick="ls('lvHelpSeen','1');render()">Got it</button></div>`;
+}
+function render(){
+  if (!DATA || !ME) return;
+  const q = $('q').value.trim().toLowerCase();
+  $('who').textContent = `${ME.name} · Sign out`;
+  $('help').innerHTML = helpStrip();
+  if (q){
+    const ps = DATA.posts.filter(p => (p.title + ' ' + p.body).toLowerCase().includes(q));
+    const shown = ps.filter(p => !FILTER || statusOf(p.id) === FILTER);
+    $('hero').innerHTML = `<div class="title-sec">Search results for “${esc(q)}”</div>`;
+    $('chips').innerHTML = statusChips(ps, '#243D62');
+    $('list').innerHTML = shown.length ? `<div class="card grp">${shown.map(p => rowHtml(p, true)).join('')}</div>` : '<p class="sub">Nothing matches.</p>';
+    return;
+  }
+  if (!SECTION){
+    const all = DATA.posts;
+    const cards = `<div class="title-sec">Choose a section</div><div class="cards">${DATA.sections.map(s => {
+      const ps = all.filter(p => p.section === s.slug); if (!ps.length) return '';
+      const k = st => ps.filter(p => statusOf(p.id) === st).length;
+      return `<button class="scard" style="--c:${s.colour}" onclick="go('${s.slug}')"><div class="band"></div><div class="in"><div class="nm">${esc(s.name)}</div><div class="tag">${esc(s.tag)}</div>${bar(ps)}<div class="nums"><span><b>${ps.length}</b> items</span><span><b>${k('awaiting')+k('revised')}</b> to review</span><span><b>${k('approved')}</b> to publish</span><span><b>${k('live')}</b> live</span></div></div></button>`;
+    }).join('')}</div>`;
+    $('hero').innerHTML = '<div class="title-sec">Everything at a glance</div>';
+    $('chips').innerHTML = statusChips(all, '#243D62');
+    $('list').innerHTML = (FILTER ? `<div class="card grp">${all.filter(p => statusOf(p.id)===FILTER).map(p => rowHtml(p, true)).join('') || '<div class="row" style="cursor:default"><span class="sub">Nothing here.</span></div>'}</div>` : '') + cards;
+    return;
+  }
+  const s = sec(SECTION), ps = DATA.posts.filter(p => p.section === SECTION);
+  $('hero').innerHTML = `<div class="hero" style="--c:${s.colour}"><button class="btn" onclick="go('')">← All sections</button><div><h2>${esc(s.name)}</h2><div class="sub">${esc(s.tag)} · ${ps.length} items</div></div></div>`;
+  $('chips').innerHTML = statusChips(ps, s.colour);
+  const shown = ps.filter(p => !FILTER || statusOf(p.id) === FILTER).sort((a,b) => (a.publish_date||'').localeCompare(b.publish_date||'') || a.id.localeCompare(b.id));
+  const ms = [...new Set(shown.map(p => p.month))].sort();
+  $('list').innerHTML = ms.map(m => {
+    const waiting = shown.filter(p => p.month === m && ['awaiting','revised'].includes(statusOf(p.id)));
+    return `<div class="card grp"><div class="sec" style="color:${s.colour};font-weight:700;display:flex;align-items:center;gap:10px">${esc(monthName(m))}<span class="sp" style="flex:1"></span>${waiting.length > 1 ? `<button class="btn" style="font-size:12px;padding:4px 10px" onclick="bulkApprove('${m}')">Approve all ${waiting.length} waiting</button>` : ''}</div>${shown.filter(p => p.month===m).map(p => rowHtml(p, false)).join('')}</div>`;
+  }).join('') || '<p class="sub">Nothing here.</p>';
+}
+async function bulkApprove(m){
+  const items = DATA.posts.filter(p => p.section === SECTION && p.month === m && ['awaiting','revised'].includes(statusOf(p.id)));
+  const open = items.filter(askCount).length;
+  if (!items.length || !confirm(`Approve all ${items.length} item(s) waiting in ${sec(SECTION).name}, ${monthName(m)}? Only do this if you have read them.${open ? `\n\n${open} of them still have questions for the school (orange notes). Alignd will chase those before anything goes live.` : ''}`)) return;
+  const now = new Date().toISOString();
+  const rows = items.map(p => ({time:now, post_id:p.id, post_school:sec(p.section).name, post_title:p.title, reviewer:ME.name, reviewer_email:ME.email, action:'Approved', comment:'', quote:'', _pending:true}));
+  REVIEWS.push(...rows); render();
+  try {
+    const r = await api({op:'bulk', token:ME.token, action:'Approved', items: items.map(p => ({post_id:p.id, post_school:sec(p.section).name, post_title:p.title}))});
+    if (!r.ok) throw new Error(r.error);
+    rows.forEach(x => delete x._pending); loadReviews().then(render);
+  } catch(e){ REVIEWS = REVIEWS.filter(x => !rows.includes(x)); render(); alert('Not saved: ' + e.message); }
+}
+// links between items open here; other site-relative links go to lifevalley.in
+function link(text, url){
+  const path = url.replace(/^https?:\/\/[^/]+/, '');
+  const own = DATA.posts.find(x => x.url && x.url.replace(/^https?:\/\/[^/]+/, '') === path);
+  if (own) return `<a href="#" onclick="openPost('${own.id}');return false" title="Opens this item here (on the website it will be at ${esc(url)})">${text}</a>`;
+  const href = url.startsWith('/') ? SITE + url : url;
+  return `<a href="${esc(href)}" target="_blank" rel="noopener nofollow">${text}</a>`;
+}
+// review view: asks highlighted. clean view (for the website team): plain links, no highlights, no first h1
+function md(src, clean){
+  const inline = s => {
+    let h = esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>');
+    h = h.replace(/\[([^\]]+)\]\((https?:[^)]+|\/[^)]*)\)/g, (m,t,u) => clean ? `<a href="${u.startsWith('/') ? SITE + u : u}">${t}</a>` : link(t,u));
+    return clean ? h : h.replace(/\[(ASK LIFE VALLEY[^\]]*)\]/g, '<mark class="ask">$1</mark>');
+  };
+  let out = '', list = null, rows = [], first = true;
+  const close = () => { if (list){ out += `</${list}>`; list = null; } };
+  const flush = () => { if (!rows.length) return; const cells = rows.filter(r => !/^\s*\|?[\s:|-]+\|?\s*$/.test(r)).map(r => r.trim().replace(/^\||\|$/g,'').split('|').map(c => c.trim()));
+    const t = '<table>' + cells.map((r,i) => '<tr>' + r.map(c => i ? `<td>${inline(c)}</td>` : `<th>${inline(c)}</th>`).join('') + '</tr>').join('') + '</table>';
+    out += clean ? t : `<div class="tw">${t}</div>`; rows = []; };
+  for (const l of src.split('\n')){ let m;
+    if (l.trim().startsWith('|')){ close(); rows.push(l); continue; } flush();
+    if ((m = l.match(/^(#{1,4})\s+(.*)/))){ close(); if (clean && first && m[1] === '#'){ first = false; continue; } first = false; out += `<h${m[1].length}>${inline(m[2])}</h${m[1].length}>`; }
+    else if ((m = l.match(/^\s*[-*]\s+(.*)/))){ if (list!=='ul'){ close(); out += '<ul>'; list = 'ul'; } out += `<li>${inline(m[1])}</li>`; }
+    else if ((m = l.match(/^\s*\d+[.)]\s+(.*)/))){ if (list!=='ol'){ close(); out += '<ol>'; list = 'ol'; } out += `<li>${inline(m[1])}</li>`; }
+    else if (/^---+\s*$/.test(l)){ close(); out += '<hr>'; }
+    else if (!l.trim()) close(); else { close(); out += `<p>${inline(l)}</p>`; } }
+  flush(); close(); return out;
+}
+function markQuotes(html, id){
+  threadOf(id).filter(r => r.quote).forEach(r => {
+    const q = esc(r.quote), i = html.indexOf(q);
+    if (i >= 0) html = html.slice(0, i) + `<mark class="q" title="${esc(r.reviewer)}: ${esc(r.comment)}">${q}</mark>` + html.slice(i + q.length);
+  });
+  return html;
+}
+function serp(p){
+  if (!p.seo_title && !p.meta_description) return '';
+  const path = (p.url || '').replace(/^https?:\/\/[^/]+/, '').replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+  const t = p.seo_title || p.title, d = p.meta_description || '';
+  return `<div class="serp"><div class="sub" style="margin-bottom:6px;font-family:inherit">How it will look on Google</div><div class="u">lifevalley.in${path.length ? ' › ' + path.map(esc).join(' › ') : ''}</div><div class="t">${esc(t.length > 60 ? t.slice(0,58) + '…' : t)}</div><div class="d">${esc(d.length > 160 ? d.slice(0,157) + '…' : d)}</div>
+    <div class="len">Title <b class="${t.length>60?'over':''}">${t.length}</b>/60 characters · Description <b class="${d.length>160?'over':''}">${d.length}</b>/160${p.image_notes ? ` · Images: ${esc(p.image_notes.slice(0,140))}` : ''}</div></div>`;
+}
+function fillReview(){
+  if (!DATA || !ME || !openId) return;
+  const p = DATA.posts.find(x => x.id === openId), st = statusOf(p.id);
+  const act = r => r.action === 'Comment' ? '' : r.action === 'Seen' ? '<span class="sub">👀 Seen</span> ' : badge({Approved:'approved', Published:'live'}[r.action] || 'changes') + ' ';
+  const thread = threadOf(p.id).map(r => `<div class="msg"><b>${esc(r.reviewer)}</b> <span class="sub">${esc(new Date(r.time).toLocaleString('en-IN'))}${r._pending ? ' · saving…' : ''}</span><br>${act(r)}${r.quote ? `<div class="quote">“${esc(r.quote)}”</div>` : ''}${esc(r.comment||'')}</div>`).join('');
+  const d = lastDecision(p.id);
+  $('revnote').innerHTML = st === 'revised' ? `<div class="revised"><b>Revised on ${esc(new Date(p.updated).toLocaleDateString('en-IN'))}</b> after ${esc(d.reviewer)} asked for changes${p.revision_note ? `: ${esc(p.revision_note)}` : '.'} Please check it again.</div>` : '';
+  const a = askCount(p);
+  $('rev').innerHTML = `<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><b>Review</b>${badge(st)}${a ? `<span class="asks">❓ ${a} question${a>1?'s':''} for the school</span>` : ''}<span class="sp" style="flex:1"></span><span class="sub">as ${esc(ME.name)}</span></div>
+    ${QUOTE ? `<div class="quote">Commenting on: “${esc(QUOTE)}” <a href="#" onclick="QUOTE='';fillReview();return false">remove</a></div>` : ''}
+    <textarea id="txt" maxlength="3000" placeholder="Your comment, your answers to the orange questions, or the changes you'd like (needed for 'Request changes'). Tip: select text in the draft to comment on that line."></textarea>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ok" onclick="send('Approved')">Approve</button><button class="btn bad" onclick="send('Changes requested')">Request changes</button><button class="btn" onclick="send('Comment')">Add comment</button><button class="btn" onclick="send('Seen')" title="Mark that you've read it, without approving">👀 Seen</button><span id="sendmsg" class="sub" style="align-self:center">${SAVED[p.id] === 'sendmsg' ? 'Saved ✓' : ''}</span></div>
+    <div class="thread">${thread || '<div class="sub">No comments yet.</div>'}</div>`;
+  fillWeb(p, st);
+}
+// what the website team needs, once an item is approved
+function fillWeb(p, st){
+  if (p.section === 'start'){ $('web').innerHTML = ''; return; }
+  const ready = st === 'approved' || st === 'live';
+  const rowsHtml = [['Page address', p.url], ['Title tag', p.seo_title], ['Meta description', p.meta_description], ['Main heading (h1)', p.h1], ['Images', p.image_notes], ['Notes', p.web_notes]]
+    .filter(([,v]) => v).map(([k,v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+  const lu = liveUrl(p.id);
+  $('web').innerHTML = `<div class="webteam"><b>For the website team</b> ${ready ? '' : '<span class="sub">· publish only after the school approves</span>'}
+    <dl>${rowsHtml}</dl>
+    ${ready ? `<div class="acts"><button class="btn" onclick="copyItem('html')">Copy text as HTML</button><button class="btn" onclick="copyItem('text')">Copy as plain text</button><span id="copymsg" class="sub"></span></div>
+    ${askCount(p) ? `<p class="note">This draft still has ${askCount(p)} open question(s). Alignd will update it before it goes live; do not publish the orange notes.</p>` : ''}
+    <div class="acts" style="margin-top:10px">${st === 'live' ? `<span>Live at <a href="${esc(/^https:\/\//.test(lu) ? lu : '#')}" target="_blank" rel="noopener">${esc(lu)}</a></span>` : `<input id="liveurl" type="url" placeholder="https://www.lifevalley.in/..." value="${esc(p.url||'')}"><button class="btn live" onclick="markLive()">Mark as live</button>`}<span id="livemsg" class="sub">${SAVED[p.id] === 'livemsg' ? 'Saved ✓' : ''}</span></div>` : ''}</div>`;
+}
+async function copyItem(kind){
+  const p = DATA.posts.find(x => x.id === openId), html = md(p.body, true);
+  const text = kind === 'html' ? html : (() => { const d = document.createElement('div'); d.innerHTML = html; return d.innerText; })();
+  try { await navigator.clipboard.writeText(text); $('copymsg').textContent = 'Copied ✓'; }
+  catch(e){ $('copymsg').textContent = 'Your browser blocked copying. Select the text below and copy it instead.'; }
+}
+async function markLive(){
+  const u = $('liveurl').value.trim();
+  if (!/^https:\/\/(www\.)?lifevalley\.in\//.test(u)){ $('livemsg').textContent = 'Enter the full address on lifevalley.in, starting with https://'; return; }
+  record('Published', u, '');
+}
+function openPost(id){
+  openId = id; QUOTE = ''; SAVED = {}; const p = DATA.posts.find(x => x.id === id);
+  $('dt').textContent = p.title; $('dm').textContent = `${sec(p.section).name} · ${monthName(p.month)}${p.publish_date ? ' · target ' + p.publish_date : ''}`;
+  $('serp').innerHTML = serp(p);
+  $('dbody').innerHTML = p.body ? markQuotes(md(p.body), id) : '<p class="sub">Not written yet.</p>';
+  fillReview(); $('drawer').classList.add('open'); $('scrim').classList.add('open');
+  $('drawer').querySelector('.db').scrollTop = 0;
+}
+async function send(action){
+  const text = ($('txt') ? $('txt').value : '').trim();
+  if ((action === 'Changes requested' || action === 'Comment') && !text){ $('sendmsg').textContent = 'Please write your comment first.'; $('txt').focus(); return; }
+  record(action, text, QUOTE);
+}
+async function record(action, text, quote){
+  const p = DATA.posts.find(x => x.id === openId), msg = action === 'Published' ? 'livemsg' : 'sendmsg';
+  const row = {time:new Date().toISOString(), post_id:p.id, post_school:sec(p.section).name, post_title:p.title, reviewer:ME.name, reviewer_email:ME.email, action, comment:text, quote, _pending:true};
+  REVIEWS.push(row); QUOTE = ''; delete SAVED[p.id];
+  fillReview(); render(); $('dbody').innerHTML = markQuotes(md(p.body), p.id); if ($(msg)) $(msg).textContent = 'Saving…';
+  try {
+    const r = await api({op:'review', token:ME.token, post_id:p.id, post_school:row.post_school, post_title:p.title, action, comment:text, quote});
+    if (!r.ok) throw new Error(r.error || 'not saved');
+    delete row._pending; SAVED[p.id] = msg;
+    if (openId === p.id && $(msg)) $(msg).textContent = 'Saved ✓';
+    loadReviews().then(() => { render(); if (openId === p.id) fillReview(); });
+  } catch(e){
+    REVIEWS = REVIEWS.filter(x => x !== row); render();
+    if (openId === p.id){ fillReview(); if (action !== 'Published'){ $('txt').value = text; QUOTE = quote; } $(msg).textContent = 'Not saved: ' + e.message + '. Please try again.'; }
+    else alert('Your update to “' + p.title + '” was not saved: ' + e.message);
+  }
+}
+document.addEventListener('mouseup', () => setTimeout(selCheck, 10));
+document.addEventListener('touchend', () => setTimeout(selCheck, 300));
+function selCheck(){
+  const sel = window.getSelection ? window.getSelection() : null, b = $('selbtn');
+  if (!sel || sel.isCollapsed || !openId || !$('dbody').contains(sel.anchorNode)){ b.style.display = 'none'; return; }
+  const text = sel.toString().replace(/\s+/g, ' ').trim();
+  if (text.length < 3){ b.style.display = 'none'; return; }
+  const rc = sel.getRangeAt(0).getBoundingClientRect();
+  b.style.left = Math.max(8, Math.min(window.innerWidth - 220, rc.left)) + 'px'; b.style.top = Math.max(8, rc.top - 44) + 'px'; b.style.display = 'block';
+  b.onclick = () => { QUOTE = text.slice(0, 500); b.style.display = 'none'; sel.removeAllRanges(); fillReview(); $('txt').focus(); $('drawer').querySelector('.db').scrollTop = 0; };
+}
+
+const close = () => { $('drawer').classList.remove('open'); $('scrim').classList.remove('open'); openId = null; QUOTE = ''; $('selbtn').style.display = 'none'; };
+$('dc').onclick = close; $('scrim').onclick = close; document.addEventListener('keydown', e => e.key === 'Escape' && close());
+$('q').oninput = render;
+$('who').onclick = () => { if (confirm('Sign out?')) logout(false); };
+async function start(){
+  $('loginbox').innerHTML = ''; $('q').style.display = ''; $('who').style.display = '';
+  $('upd').textContent = DATA.updated; render(); await loadReviews(); render();
+}
+(async () => {
+  if (!REVIEW_URL || !ENC){ $('loginbox').innerHTML = '<p class="note">This page is not connected yet.</p>'; return; }
+  if (await resume()) start(); else loginForm('');
+  setInterval(() => { if (ME) loadReviews().then(() => { render(); if (openId) fillReview(); }); }, 60000);
+})();
+</script>
+</body>
+</html>
